@@ -1,0 +1,20 @@
+# Python environment
+.venv/
+
+# Build scripts (instructor-only)
+MP*/build_notebook.py
+
+# Spec documents (hidden until after assignment due dates)
+specs/
+
+# Claude Code config (instructor-only)
+.claude/
+
+# Jupyter
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db

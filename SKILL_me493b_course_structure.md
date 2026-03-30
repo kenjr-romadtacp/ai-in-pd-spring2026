@@ -1,10 +1,10 @@
 ---
 name: me493b-course-structure
 description: >
-  Reference for all structural, naming, and repository conventions for 
-  ME 493B "AI in Product Development" at UW Bothell (Spring 2026). 
-  Consult this file before creating any course file, notebook, folder, 
-  or spec document. Covers repo layout, file naming, notebook structure, 
+  Reference for all structural, naming, and repository conventions for
+  ME 493B "AI in Product Development" at UW Bothell (Spring 2026).
+  Consult this file before creating any course file, notebook, folder,
+  or spec document. Covers repo layout, file naming, notebook structure,
   spec document format, GitHub Classroom workflow, Canvas integration,
   and Copilot interaction patterns.
 ---
@@ -14,10 +14,149 @@ description: >
 ## Course identity
 - **Course:** ME 493B — AI in Product Development
 - **Institution:** University of Washington Bothell
-- **Term:** Spring 2026
+- **Term:** Spring 2026 (March 30 – June 5, 20 sessions, TTh 3:30–5:30 PM)
 - **Instructor:** Scott Thielman, PhD (thielman@uw.edu)
-- **Schedule:** Tuesdays and Thursdays, 3:30–5:30 PM, UW1 041
+- **Room:** UW1 041
 - **Enrollment:** 24 students max
+- **Credits:** 4
+
+---
+
+## Course architecture
+
+### The Five Pillars (recurring vocabulary and rubric dimensions)
+
+| Pillar | Short definition |
+|--------|----------------|
+| **Goal & Direction** | Specifying intent, writing requirements, directing AI toward outcomes |
+| **Context Management** | RAG, memory, information architecture — what the model knows |
+| **Tools & Integration** | MCP, APIs, function calling, connections to engineering systems |
+| **Centaur Engineering** | Human-AI collaboration where the combination exceeds either alone |
+| **Evaluation & Trust** | Verifying AI outputs at every scale, from response to full workflow |
+
+### The Five Building Blocks (foundational concepts from "How AI Thinks" module)
+
+These are the cognitive operations that underpin all AI systems. Taught in
+MP1 Part A and referenced throughout the course:
+
+| Building Block | What it means | Where it recurs |
+|---|---|---|
+| **Representation** | Turning real things into numbers | Embeddings in RAG (MP2), feature extraction (MP3), multimodal (MP4) |
+| **Similarity** | Measuring how alike two things are | Document retrieval (MP2), design search (MP3), output evaluation (MP4) |
+| **Prediction** | Estimating unknowns from patterns | Generative design (Wk 5), LLM generation is next-token prediction |
+| **Classification** | Sorting things into categories | Quality evaluation, tool selection, trust calibration (Wk 8-9) |
+| **Search & Retrieval** | Finding relevant items in a large space | RAG (MP2), semantic search, attention in Transformers |
+
+### Product Development Spine
+
+The course follows the engineering development lifecycle:
+1. **Discover & Frame** (Weeks 3-4) → MP2
+2. **Design & Explore** (Weeks 5-6) → MP3
+3. **Build & Integrate** (Weeks 7-8) → MP3-MP4
+4. **Test & Trust** (Weeks 8-9) → MP4
+5. **Present & Reflect** (Week 10) → MP5
+
+### Foundation Module: "How AI Thinks" (Weeks 1-2, Sessions 1-4)
+
+Sessions 1-4 teach ML fundamentals as background for engineering decisions:
+- Session 1: "Welcome to the Future" — course vision, AI timeline, five pillars
+- Session 2: "From Data to Representations" — vectors, embeddings, training
+- Session 3: "The Architecture of Intelligence" — tokens, Transformers, attention
+- Session 4: "From Understanding to Generation" — LLM generation, diffusion, multimodal
+
+---
+
+## Assessment structure
+
+| Assignment | Type | Points | Timeline | Pillar emphasis |
+|-----------|------|--------|----------|----------------|
+| hello_world | Setup (pass/fail) | 10 | Week 1 | Goal & Direction (intro) |
+| MP1 | Individual, 2 weeks | 100 | Weeks 1-2 | Goal & Direction |
+| MP2 | Individual, 2 weeks | 100 | Weeks 3-4 | Context Management |
+| MP3 | Individual, 2 weeks | 100 | Weeks 5-7 | Tools & Integration |
+| MP4 | Individual, 2 weeks | 100 | Weeks 7-9 | Centaur Engineering + Eval & Trust |
+| Quiz 1 | In-class | 100 | Week 4 | Foundation + Pillars 1-2 |
+| Quiz 2 | In-class | 100 | Week 9 | Pillars 3-5 |
+| News Discussion | Rotating | 100 | All quarter | All pillars |
+| MP5 / Final Presentation | Team (3-4), live | 300 | Week 10 | All pillars |
+| **Total** | | **1,000** | | |
+
+### Mini-project structure (MP1-MP4)
+
+Each MP = **100 points**, **two-week timeline**, two parts:
+- **Part A (50 pts):** Guided instructional exercise (Jupyter notebook) with
+  learn→explore→solve pattern. Includes HOMEWORK cells with verifiable answers.
+- **Part B (50 pts):** Applied engineering design problem evaluated across all
+  five pillars with weighted emphasis. Constrained shared scenario for MP1-MP3;
+  more open for MP4-MP5.
+
+**Both Part A and Part B share a single due date** — 13 days after assignment,
+due at 11:59 PM. There is no separate Part A checkpoint.
+
+MP1-MP3 use multi-part guided format. MP4-MP5 give students more freedom.
+Mini-projects ARE the homework — there is no separate homework category.
+
+### Mini-project schedule
+
+| MP | Assigned | Due (11:59 PM) | Pillar emphasis |
+|----|----------|----------------|-----------------|
+| MP1 | Tue, March 31 (Session 1) | Mon, April 13, 11:59 PM | Goal & Direction |
+| MP2 | Tue, April 14 (Session 5) | Mon, April 27, 11:59 PM | Context Management |
+| MP3 | Tue, April 28 (Session 9) | Mon, May 11, 11:59 PM | Tools & Integration |
+| MP4 | Tue, May 12 (Session 13) | Mon, May 25, 11:59 PM | Centaur + Eval & Trust |
+| MP5 | Tue, May 19 (Session 17) | Finals week | All pillars (team) |
+
+Note: Each MP is assigned on a Tuesday and due at 11:59 PM 13 days later
+(Monday night). The next MP is assigned the following Tuesday.
+
+### Part A notebook pattern: Learn → Explore → Solve
+
+Every section in a Part A notebook follows this arc:
+1. **TEACH:** Pre-written code with rich commentary. Student runs and observes.
+   Start at lowest dimensionality (2D), use intuitive data first.
+2. **EXPLORE:** `# ✏️ YOUR TURN` cells with guided experiments.
+3. **SOLVE:** `# 🎯 HOMEWORK` cells where students write code to answer a
+   specific question with a verifiable answer (a name, number, or ranking).
+
+### Part A grading (50 points)
+
+| Component | Points | Criteria |
+|-----------|--------|----------|
+| Completion & Experimentation | 30 | All cells run. YOUR TURN cells show experimentation. HOMEWORK cells have working code with correct answers. |
+| Reflections | 20 | Thoughtful reflections demonstrating observation and connection to course concepts. |
+
+### Part B grading (50 points)
+
+Evaluated across all five pillars with weighted emphasis:
+
+| Pillar | MP1 | MP2 | MP3 | MP4 |
+|--------|-----|-----|-----|-----|
+| Goal & Direction | ★★★ | ★★ | ★★ | ★★ |
+| Context Mgmt | ★ | ★★★ | ★★ | ★★ |
+| Tools & Integration | ★ | ★ | ★★★ | ★★ |
+| Centaur Engineering | ★★ | ★ | ★★ | ★★★ |
+| Evaluation & Trust | ★★ | ★★ | ★★ | ★★★ |
+
+---
+
+## MP1 specifics (current project)
+
+### MP1 Part A: "Under the Hood — How AI Thinks"
+- Jupyter notebook teaching five building blocks (representation, similarity,
+  prediction, classification, search)
+- Five HOMEWORK problems with verifiable answers, progressing in complexity
+- Uses fruits/movies/snacks for concept teaching, engineering data for application
+- Real embedding model: `sentence-transformers` with `all-MiniLM-L6-v2`
+- Capstone homework integrates all five sections into a mini search engine
+- Spec: `specs/SPEC_MP1_PartA.md`
+
+### MP1 Part B: "MiniClaw Gear Train Design"
+- Framed as a design brief from "Jordan Chen, Engineering Manager, ACME Robotics"
+- Students design a scaled-down 3D-printable version of the Hiwonder BigClaw gripper
+- Key constraints: ~20% scale-down, PLA/PETG, hand-driven input wheel, 5-8N grip
+- Deliverables: goal statement, design iteration log, calculation script, trust assessment
+- Reference: https://www.hiwonder.com/products/bigclaw-mechanical-gripper
+- Separate design brief document provided alongside assignment document
 
 ---
 
@@ -26,34 +165,17 @@ description: >
 ### Accounts and repos
 - **Instructor GitHub:** dr-thielman
 - **Classroom org:** me493b-spring2026
-- **Template repo:** dr-thielman/ai-in-pd-spring2026
-- **Template URL:** https://github.com/dr-thielman/ai-in-pd-spring2026
-- **Template visibility:** Public (required for GitHub Classroom)
-- **Template setting:** Marked as GitHub Template Repository
-- **Student repos:** Private, auto-created in me493b-spring2026 org by Classroom
-
-### GitHub Classroom
-- **Classroom name:** ME 493B Spring 2026
-- **Classroom org:** me493b-spring2026
-- **Classroom URL:** classroom.github.com
-- **Student repo naming:** `{assignment-slug}-{githubusername}`
-  - Example: `hello-world-setup-jansmith`
+- **Template repo:** dr-thielman/ai-in-pd-spring2026 (must be public)
+- **Student repos:** Private, auto-created in me493b-spring2026 org
 
 ### Critical GitHub Classroom lessons learned
-- The template repo must live under **dr-thielman** (personal account),
-  NOT under the classroom org — Classroom cannot use its own org's repo
-  as a starter template (circular reference error)
-- Do NOT set a "Supported editor" when creating assignments — this causes
-  a save error even when the repo is valid. Leave editor blank; the
-  devcontainer.json handles the VS Code/Codespaces configuration
-- Starter code can only be set **during initial assignment creation** —
-  it cannot be added or changed after the assignment exists. Delete and
-  recreate if this needs to change
-- Students do NOT need to be pre-added to the org — the invitation link
-  grants access automatically when clicked
-- The "This action will pull and push from origin/main" Codespaces warning
-  is safe — "origin" refers to the student's own private repo only.
-  Instruct students to click "OK, Don't Show Again"
+- Template repo must live under **dr-thielman** (personal account),
+  NOT under the classroom org (circular reference error)
+- Do NOT set "Supported editor" when creating assignments (causes save error)
+- Starter code can only be set during initial assignment creation —
+  cannot be added or changed afterward; delete and recreate if needed
+- Students do NOT need to be pre-added to the org — invitation link
+  grants access automatically
 
 ---
 
@@ -61,27 +183,36 @@ description: >
 
 ```
 ai-in-pd-spring2026/                 ← lives under dr-thielman
-├── hello_world.ipynb                ← entry point, setup lesson, repo root
+├── hello_world.ipynb                ← setup lesson, repo root
 ├── README.md                        ← student-facing setup instructions
 ├── requirements.txt                 ← shared Python deps
 ├── .devcontainer/
 │   └── devcontainer.json            ← Codespaces config
 │
-├── specs/                           ← intentionally visible to students
-│   ├── SPEC_hello_world.md          ← Goal & Direction pillar example
-│   ├── SPEC_mp1_part_a.md
-│   └── SPEC_mp2.md
+├── specs/                           ← visible to students (Goal & Direction examples)
+│   ├── SPEC_hello_world.md
+│   ├── SPEC_MP1_PartA.md
+│   └── ...
 │
-├── mp1/
-│   └── mp1_part_a.ipynb
-├── mp2/
-│   └── mp2_rag_pipeline.ipynb
-├── mp3/
-├── mp4/
-├── mp5/
+├── MP1/
+│   ├── Part A/
+│   │   └── MP1_PartA_Under_the_Hood.ipynb
+│   └── Part B/
+│       └── (reference data, BigClaw specs, etc.)
 │
-└── sessions/
-    └── .gitkeep
+├── MP2/
+│   ├── Part A/
+│   └── Part B/
+│
+├── MP3/
+│   ├── Part A/
+│   └── Part B/
+│
+├── MP4/
+│   ├── Part A/
+│   └── Part B/
+│
+└── MP5/
 ```
 
 ---
@@ -89,158 +220,85 @@ ai-in-pd-spring2026/                 ← lives under dr-thielman
 ## File naming conventions
 
 ### Notebooks
-| File | Convention | Example |
-|------|-----------|---------|
-| Setup lesson | `hello_world.ipynb` | `hello_world.ipynb` |
-| Mini-project | `mp{N}_descriptive_name.ipynb` | `mp1_part_a.ipynb` |
-| Session demo | `session{NN}_topic.ipynb` | `session03_embeddings.ipynb` |
-
-- Lowercase and underscores only — no spaces, no hyphens
-- Session numbers zero-padded to two digits
-- MP part suffixes: `_part_a`, `_part_b` as needed
+| Convention | Example |
+|-----------|---------|
+| `MP{N}_Part{X}_Descriptive_Name.ipynb` | `MP1_PartA_Under_the_Hood.ipynb` |
+| `hello_world.ipynb` | Setup lesson at repo root |
 
 ### Spec documents
-| File | Convention | Example |
-|------|-----------|---------|
-| Notebook spec | `SPEC_{notebook_name}.md` | `SPEC_hello_world.md` |
+| Convention | Example |
+|-----------|---------|
+| `SPEC_MP{N}_Part{X}.md` | `SPEC_MP1_PartA.md` |
 
-- All caps `SPEC_` prefix makes specs visually distinct
-- Filename after prefix matches the notebook it generates exactly
-- Always lives in `specs/` folder
+- All specs live in `specs/` folder
+- UPPERCASE prefix `SPEC_` makes them visually distinct
 
-### Other files
-- `README.md` — uppercase, repo root only
-- `requirements.txt` — lowercase, repo root
-- `devcontainer.json` — always in `.devcontainer/` subfolder
+### Assignment documents (Word)
+- `MP{N}_The_First_Build.docx` — student-facing assignment document
+- `MP{N}_PartB_Design_Brief.docx` — in-world scenario document
+
+These are distributed via Canvas, NOT committed to the GitHub repo.
 
 ---
 
 ## Spec document format
 
 Every notebook must have a corresponding spec in `specs/`. Specs serve
-two purposes: (1) source document handed to Claude Code to generate the
-notebook, and (2) intentionally visible to students as Goal & Direction
-pillar examples — showing that intent must be specified before
-implementation begins.
+two purposes: (1) build instructions for Claude Code to generate the
+notebook, and (2) visible to students as Goal & Direction examples.
 
-### Required spec sections
+### Required spec sections (see SPEC_hello_world.md for a complete example)
 
-```markdown
-# SPEC: {notebook_filename}.ipynb
-## Course: ME 493B — AI in Product Development, Spring 2026
-## Author: Scott Thielman
-## Location of generated file: ai-in-pd-spring2026/{path}/{filename}.ipynb
-## Location of this spec: ai-in-pd-spring2026/specs/SPEC_{filename}.md
-
----
-
-## Purpose
-[What this notebook teaches or accomplishes. 1–3 sentences.]
-
-## Primary pillar emphasis
-[Goal & Direction / Context Management / Tools & Integration /
-Centaur Engineering / Evaluation & Trust]
-
-## Student prerequisites
-[What students must have done or know before opening this notebook]
-
-## Tone
-[e.g., "friendly, low-stakes" or "technical, rigorous"]
-
----
-
-## Notebook structure
-[Cell-by-cell. For each cell specify:]
-[- Cell type: Markdown or Code]
-[- Content: full text for markdown; # TODO comment only for code cells]
-[- Expected Copilot output: what a correct completion looks like]
-[- Variables that must carry over from previous cells]
-
----
-
-## Technical requirements
-[Kernel version, dependencies, data files, run order constraints]
-
-## Devcontainer requirements
-[Extensions or postCreateCommand additions beyond standard config]
-
-## What the instructor sees on GitHub
-[What a complete submission looks like — grading reference]
-
-## Canvas assignment setup
-[Assignment type, points, instructions for Canvas page]
-```
+1. **Header:** Notebook filename, course, author, file locations
+2. **Purpose:** What this notebook teaches (1-3 sentences)
+3. **Primary pillar emphasis**
+4. **Student prerequisites**
+5. **Tone**
+6. **Session alignment:** Which lecture sessions this connects to
+7. **Notebook structure:** Section-by-section breakdown with:
+   - The question the section answers
+   - Data to use (self-contained, no external files)
+   - Concepts to teach (start low-dimensional, intuitive data first)
+   - YOUR TURN experiments (specific things to try)
+   - HOMEWORK problems (definite verifiable answers)
+   - Dig Deeper keywords and AI prompts
+   - Forward connections to later course content
+8. **Grading alignment**
+9. **Technical requirements**
+10. **Build notes for Claude Code**
 
 ---
 
 ## Notebook authoring rules
 
 ### Code cells
-- **Contain only a `# TODO:` comment** — never solution code
-- Comment must be specific enough for Copilot to generate correct code
-- Variable names that must be used (e.g., `student_name`) must appear
-  in the comment so Copilot uses them consistently
-- Variables from earlier cells that carry forward must be noted in the
-  spec and referenced in the TODO comment
-- Do not commit executed notebooks to the template repo — students
-  must see clean unexecuted cells on first open
+- Pre-written TEACH cells: full working code with rich inline comments
+- YOUR TURN cells: clear instructions with specific things to try
+- HOMEWORK cells: starter scaffolding with `# YOUR CODE HERE` placeholders
+  and `print()` statements so cells run without errors but produce
+  placeholder output students must replace
+- Variable names and data that carry forward must be noted in the spec
 
 ### Markdown cells
-- Cells students must edit: prefix with **✏️ EDIT THIS CELL**
-- Section headers use `###` (H3) — H1/H2 reserved for title and
-  major section dividers only
-- Tone: friendly and direct; assume smart students, not ML experts
-- Never use jargon without a brief inline definition on first use
-- Include this warning prominently in the submission section of
-  every notebook:
-  "⚠️ Codespaces does not save to GitHub automatically. Your work
-  only exists on GitHub after you commit and push. If your Codespace
-  expires before you push, your work is gone."
+- Cells students must edit: prefix with **✏️ YOUR TURN** or **🎯 HOMEWORK**
+- Every formula shown alongside a concrete numerical example
+- No jargon without inline definition on first use
+- Forward connection callouts: "You'll see this again when..."
+- Include Codespace save warning in submission section
 
-### Copilot interaction — platform agility framing
-Students are encouraged to explore and use any Copilot interaction
-mode that works for them. Do NOT prescribe a single mode. The course
-values platform agility — the ability to find effective ways to work
-with AI tools is itself a learning objective.
-
-The three main modes available in Codespaces:
-- **Inline completion (ghost text):** Press Enter after the # TODO
-  comment, wait 2–3 seconds, press Tab to accept. Most direct.
-- **Copilot Chat (right panel):** Describe what you want in natural
-  language. More conversational, good for complex cells.
-- **Copilot CLI:** Available in the terminal for command-line tasks.
-
-Markdown cell before each code cell should invite exploration,
-not prescribe a mode. Use this pattern:
-  "Use GitHub Copilot to complete this cell. Try inline completion
-  (press Enter after the comment and wait for ghost text), Copilot
-  Chat (the panel on the right), or any other mode you discover.
-  Notice what feels effective — you'll reflect on this below."
-
-Reflection cells should ask students to evaluate their tool choices:
-  "Which Copilot interaction mode did you use and why? Did you try
-  more than one? What felt most natural or effective?"
-
-This turns every code cell into a micro Evaluation & Trust exercise
-on their own tool choices — pillar 5 in practice from day one.
-
-The devcontainer includes `"jupyter": true` under
-`github.copilot.enable` to ensure inline ghost text is available
-as one of the options, but students are not required to use it.
+### Copilot interaction — platform agility
+Students explore inline completion, Copilot Chat, and Copilot CLI.
+Do NOT prescribe a single mode. The ability to find effective AI
+interaction patterns is itself a learning objective.
 
 ### Cell ordering
 - All notebooks must run top-to-bottom without errors in a fresh Codespace
 - No hidden state dependencies
-- Final cell is always a markdown "You're done" / next steps cell
-
-### Pillar references
-- Each notebook must reference its primary pillar explicitly
-- hello_world.ipynb directs students to read its own spec as a
-  Goal & Direction example — reuse this pattern in later notebooks
+- sentence-transformers install uses try/except with --break-system-packages
 
 ---
 
-## Devcontainer standard configuration
+## Devcontainer configuration
 
 ```json
 {
@@ -257,18 +315,13 @@ as one of the options, but students are not required to use it.
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
         "editor.inlineSuggest.enabled": true,
-        "github.copilot.enable": {
-          "*": true,
-          "jupyter": true
-        }
+        "github.copilot.enable": { "*": true, "jupyter": true }
       }
     }
   },
   "postCreateCommand": "pip install -r requirements.txt"
 }
 ```
-
----
 
 ## Standard requirements.txt
 
@@ -277,117 +330,36 @@ numpy
 pandas
 matplotlib
 scikit-learn
-torch
+sentence-transformers
 jupyter
 ```
 
-Keep minimal. Add packages only when a specific project requires them.
-
 ---
 
-## Student submission workflow (GitHub Classroom + Canvas)
-
-Canvas is the student's home base. GitHub is where work lives.
-This loop is taught in hello_world.ipynb and assumed for all MPs.
+## Student submission workflow
 
 ```
-1. Canvas: student reads assignment instructions
-2. Canvas: student clicks GitHub Classroom invitation link
-3. GitHub: auto-creates private repo in me493b-spring2026 org
-4. GitHub: student opens repo → Code → Codespaces → New codespace
-5. Codespaces: student completes notebook
-6. Codespaces: student commits and pushes via Source Control GUI
-7. Canvas: student pastes GitHub repo URL as Website URL submission
-8. Instructor: reviews notebook on GitHub, enters grade in Canvas
+1. Canvas: read assignment instructions
+2. Canvas: click GitHub Classroom invitation link
+3. GitHub: auto-creates private repo
+4. GitHub: open repo → Code → Codespaces → New codespace
+5. Codespaces: complete notebook
+6. Codespaces: commit and push via Source Control GUI
+7. Canvas: paste GitHub repo URL as Website URL submission
+8. Instructor: review on GitHub, enter grade in Canvas
 ```
-
-### VS Code Source Control GUI steps
-1. Click branch icon (⎇) in left sidebar
-2. Click `+` next to changed file to stage it
-3. Type commit message: `{assignment} complete — [Student Full Name]`
-4. Click ✓ Commit
-5. Click Sync Changes → click "OK, Don't Show Again" on the warning
-6. Get repo URL in terminal: `git remote get-url origin`
-7. Paste URL into Canvas Website URL submission field
-
-### Commit message convention
-```
-{assignment_name} complete — {Student Full Name}
-```
-Examples:
-- `hello_world complete — Jane Smith`
-- `mp1_part_a complete — Carlos Reyes`
-
-### Codespaces persistence rules
-- Changes auto-save locally within an active Codespace
-- Changes persist if browser closed and same Codespace reopened
-  (within ~30 days of inactivity)
-- Changes are LOST if Codespace expires before pushing
-- Changes are NEVER on GitHub until committed and pushed
-- Students reopen Codespaces at: github.com/codespaces
-
----
-
-## GitHub Classroom assignment creation checklist
-
-For every new assignment:
-- [ ] Notebook and spec committed to template repo (clean, unexecuted)
-- [ ] Template repo is public under dr-thielman
-- [ ] Go to classroom.github.com → ME 493B Spring 2026 → New assignment
-- [ ] Set assignment title and deadline
-- [ ] Set individual or group (cannot change after creation)
-- [ ] Starter code: select dr-thielman/ai-in-pd-spring2026
-- [ ] Repository visibility: Private
-- [ ] Supported editor: leave blank
-- [ ] Click Create assignment
-- [ ] Copy invitation link → post to Canvas assignment page
-- [ ] Test invitation link yourself before students see it
-
----
-
-## Assessment structure
-
-| Assignment | Type | Points | Pillar emphasis |
-|-----------|------|--------|----------------|
-| hello_world | Setup (pass/fail) | 10 | Goal & Direction (intro) |
-| MP1 Part A | Individual, 1 week | 80 | Goal & Direction |
-| MP2 | Individual, 1 week | 80 | Context Management |
-| MP3 | Paired, 2 weeks | 80 | Tools & Integration |
-| MP4 | Paired, 2 weeks | 80 | Centaur Engineering |
-| MP5 | Paired, 2 weeks | 80 | All pillars equally |
-| Quiz 1 | In-class | 100 | Foundation + Pillars 1–2 |
-| Quiz 2 | In-class | 100 | Pillars 3–5 |
-| News Discussion | Rotating | 100 | All pillars |
-| Final Presentation | Live, graded | 300 | All pillars |
-
----
-
-## The five pillars (course vocabulary)
-
-Use exact casing below — students use these as rubric dimensions.
-
-| Pillar | Short definition |
-|--------|----------------|
-| **Goal & Direction** | Specifying intent, writing requirements, directing AI toward outcomes |
-| **Context Management** | RAG, memory, information architecture — what the model knows |
-| **Tools & Integration** | MCP, APIs, function calling, connections to engineering systems |
-| **Centaur Engineering** | Human-AI collaboration where the combination exceeds either alone |
-| **Evaluation & Trust** | Verifying AI outputs at every scale, from response to full workflow |
 
 ---
 
 ## What NOT to do
 
 - Do not put solution code in student-facing notebooks
-- Do not commit executed notebooks with outputs to the template repo
+- Do not commit executed notebooks to the template repo
 - Do not use Google Colab — course uses GitHub Codespaces exclusively
-- Do not reference Claude Code in student-facing materials — students
-  use GitHub Copilot; Claude Code is the instructor's authoring tool
-- Do not create separate solution files unless needed for grading
+- Do not reference Claude Code in student materials — students use Copilot
 - Do not use hyphens in notebook filenames (use underscores)
-- Do not put specs outside the `specs/` folder
-- Do not set a Supported editor when creating Classroom assignments
-- Do not try to add starter code to an existing assignment — delete
-  and recreate instead
-- Do not host the template repo in the me493b-spring2026 org —
-  it must live under dr-thielman
+- Do not set a Supported editor in Classroom assignments
+- Do not host the template repo in the classroom org
+- Do not use ML where physics or known equations suffice — ML should
+  add genuine value, not replace straightforward calculations
+- Do not train models on problems where lookup tables give the answer
