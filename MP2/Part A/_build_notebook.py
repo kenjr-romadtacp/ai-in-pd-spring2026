@@ -485,12 +485,31 @@ cells.append(md("""\
 
     ### Setting up your GitHub PAT
 
-    You need a GitHub Personal Access Token with `models:read` scope:
-    1. Go to [github.com/settings/tokens](https://github.com/settings/tokens)
-    2. Click "Generate new token (classic)" or "Fine-grained token"
-    3. For classic tokens: check the `read:models` scope
-    4. For fine-grained tokens: under Permissions → Models, select "Read"
-    5. Copy the token and set it as an environment variable in the cell below
+    You need a **fine-grained** GitHub Personal Access Token with Models permission:
+
+    1. Go to [github.com/settings/tokens?type=beta](https://github.com/settings/tokens?type=beta)
+    2. Click **"Generate new token"** (this page defaults to fine-grained tokens —
+       do **not** use classic tokens)
+    3. Give it a name (e.g., "ME493B Models") and set expiration
+    4. Under **Permissions → Account permissions → Models**, select **"Read"**
+    5. Click "Generate token" and **copy the token immediately** — you won't see
+       it again
+
+    ### Storing your token in a `.env` file
+
+    Your token goes in a `.env` file in the root of your repository. This file is
+    already listed in `.gitignore`, so it won't be committed or shared.
+
+    **If you don't have a `.env` file yet:** ask Copilot! Open Copilot Chat and type:
+    *"Create a .env file in my repo root with a GITHUB_TOKEN variable."* It will
+    generate the file for you — just paste in your actual token value.
+
+    The `.env` file should look like this:
+    ```
+    GITHUB_TOKEN=github_pat_your_token_here
+    ```
+
+    The setup cell below loads the token from `.env` automatically.
 
     **Rate limits:** GitHub Models free tier is rate-limited (~10 requests/min for
     GPT-4o, ~50/day). This is enough for the exercises. If you hit limits, wait a minute
@@ -557,18 +576,34 @@ cells.append(md("""\
 
 cells.append(code("""\
     # --- GitHub PAT Setup ---
-    # Set your GitHub Personal Access Token here.
-    # Option 1: Set as environment variable before launching the notebook:
-    #   export GITHUB_TOKEN="ghp_your_token_here"
-    # Option 2: Set it directly (less secure — don't commit this!):
-    # os.environ["GITHUB_TOKEN"] = "ghp_your_token_here"
+    # Loads your token from a .env file in your repo root.
+    # If you don't have a .env file yet, ask Copilot to create one!
+    # Your .env should contain:   GITHUB_TOKEN=github_pat_your_token_here
+
+    import os
+
+    # Look for .env in repo root (handles running from notebook dir or repo root)
+    for _env_dir in [os.path.abspath(""), os.path.abspath(".."), os.path.abspath("../..") ]:
+        _env_path = os.path.join(_env_dir, ".env")
+        if os.path.exists(_env_path):
+            with open(_env_path) as _f:
+                for _line in _f:
+                    _line = _line.strip()
+                    if _line and not _line.startswith("#") and "=" in _line:
+                        _key, _val = _line.split("=", 1)
+                        os.environ[_key.strip()] = _val.strip()
+            break
 
     GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
     if not GITHUB_TOKEN:
-        print("WARNING: GITHUB_TOKEN not set. Section 4 generation will fail.")
-        print("Set it with: os.environ['GITHUB_TOKEN'] = 'ghp_your_token_here'")
+        print("⚠️  GITHUB_TOKEN not found. The generation cells in Section 4 will fail.")
+        print()
+        print("To fix this:")
+        print("  1. Create a .env file in your repo root (ask Copilot if you need help)")
+        print("  2. Add this line:  GITHUB_TOKEN=github_pat_your_token_here")
+        print("  3. Re-run this cell")
     else:
-        print(f"GitHub token loaded ({len(GITHUB_TOKEN)} chars)")
+        print(f"✅ GitHub token loaded ({len(GITHUB_TOKEN)} chars)")
 
     # Helper: API call with retry logic for rate limits
     from openai import OpenAI
