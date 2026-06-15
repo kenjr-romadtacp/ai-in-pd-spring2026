@@ -92,3 +92,4 @@ if __name__ == "__main__":
     for c in out["chunks"]:
         print(f"  [{c['doc_id']}] {c['title']} (score {c['score']})")
         print("   ", c["text"][:160].replace("\n", " "), "...")
+
